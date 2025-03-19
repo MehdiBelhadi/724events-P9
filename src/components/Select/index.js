@@ -9,16 +9,16 @@ const Select = ({
   selection,
   onChange,
   name,
-  titleEmpty,
+  titleEmpty = false, // s'il n'est pas fourni, il passe sur faux
   label,
   type = "normal",
 }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+    onChange(newValue); // on met newValue pour que le parent recoive la nouvelle valeur
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(true); // changement de newValue à true pour qu'on s'assure que la liste se ferme
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
